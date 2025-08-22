@@ -16,10 +16,10 @@ public class CityServiceImp implements CityService {
     private final ObjectMapper objectMapper = new ObjectMapper();
     @Override
     public List<String> getCityCodes() throws IOException {
+        List<String> cityCodes = new ArrayList<>();
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("cities.json");
         JsonNode node = objectMapper.readTree(inputStream).get("List");
 
-        List<String> cityCodes = new ArrayList<>();
         for (JsonNode city : node) {
             cityCodes.add(city.get("CityCode").asText());
         }
