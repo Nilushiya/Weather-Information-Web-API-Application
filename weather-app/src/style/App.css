@@ -8,6 +8,7 @@ body, html, #root {
   font-style: normal;
 }
 
+/* weather */
 .app {
   min-height: 100vh;
   min-width: 350px;
@@ -43,6 +44,7 @@ body, html, #root {
   font-weight: 200;
   font-size: .9rem;
 }
+
 .cards-grid {
   width: 700px;
   justify-self: center;
@@ -58,13 +60,6 @@ body, html, #root {
   width: 300px;
 }
 
-.weather-card.blue { background: linear-gradient(135deg, #007bff, #00c6ff); }
-.weather-card.purple { background: linear-gradient(135deg, #6f42c1, #9b59b6); }
-.weather-card.green { background: linear-gradient(135deg, #28a745, #20c997); }
-.weather-card.orange { background: linear-gradient(135deg, #fd7e14, #f39c12); }
-.weather-card.red { background: linear-gradient(135deg, #dc3545, #c0392b); }
-.weather-card.gray { background: linear-gradient(135deg, #6c757d, #495057); }
-
 .row-one{
   display: flex;
   flex-direction: row;
@@ -72,7 +67,6 @@ body, html, #root {
   align-items: center;
   color: white !important;
   padding: 2rem 0 !important;
-  background-color: #20c997;
   border-top-left-radius: 7px;
   border-top-right-radius: 7px;
 }
@@ -112,6 +106,13 @@ body, html, #root {
   opacity: 0.9;
 }
 
+@media (max-width: 768px) {
+  .cards-grid {
+  width: 320px;
+}
+}
+
+/* footer */
 .app-footer {
   min-width: 350px;
   text-align: center;
@@ -121,10 +122,9 @@ body, html, #root {
   background-color: #30333d;
 }
 
+/* login */
 .login{
   height: 100vh;
-  /* min-width: 350px; */
-  /* background-color: #28a745; */
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -144,3 +144,28 @@ body, html, #root {
   justify-self: center;
   align-self: center;
 }
+
+
+/* loading */
+.loading-container {
+  width: 100%;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.spinner {
+  border: 6px solid #f3f3f3; /* Light gray */
+  border-top: 6px solid #6f42c1; /* Purple */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: auto;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+

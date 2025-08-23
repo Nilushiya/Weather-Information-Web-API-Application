@@ -4,24 +4,41 @@ import "../style/App.css";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import weatherIcon from '../assets/cloud.png';
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from "react-router-dom";
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [city, setCity] = useState();
-  const {getAccessTokenSilently, logout} = useAuth0();
+  const {getAccessTokenSilently, loginWithRedirect, logout, isAuthenticated, isLoading} = useAuth0();
+  const cardColors = ["#6f42c1", "#198754", "#0dcaf0", "#ffc107", "#dc3545", "#fd7e14", "#f53bf5ff", "#f70e6fff"];
+  const navigate = useNavigate();
 
   useEffect(() =>{
-    fetchWeather();
-  },[]);
+    if (isLoading) return;
+    if (isAuthenticated) {
+      fetchWeather();
+    } else {
+      loginWithRedirect({
+        authorizationParams: {
+          audience: "https://myapi.example.com",
+          redirect_uri: window.location.origin + "/weather",
+        },
+      });
+    }
+  }, [isAuthenticated, isLoading]);
+
   const fetchWeather = async () => {
     setLoading(true);
+
     try {
-      const token = await getAccessTokenSilently();
-      const response = await axios.get('http://localhost:8080/api/weather'
-        , {
-        headers: { Authorization: `Bearer ${token}` }
-      }
+      const token = await getAccessTokenSilently({
+      audience: "https://myapi.example.com",
+    });
+    console.log("token: ",token);
+    const response = await axios.get("http://localhost:8080/api/weather", {
+      headers: { Authorization: `Bearer ${token}` }
+    }
     );
       setWeatherData(response.data.data);
     } catch (error) {
@@ -53,10 +70,16 @@ const Weather = () => {
         </header>
 
         <Row className="cards-grid m-0 p-0">
-          {weatherData && weatherData.map((c) => (
+           {loading ? (
+              <div className="loading-container">
+                <div className="spinner"></div>
+              </div>
+            ) : (weatherData && weatherData.map((c, index) => (
             <Col key={c.cityName} xs={12} md={6} lg={6}>
-              <div className='weather-card purple'>
-                <div className="row-one">
+              <div className='weather-card'
+                onClick={() => navigate(`/weather/${c.cityName}`, { state: { data: c } })}
+                style={{ cursor: "pointer", backgroundColor: cardColors[index % cardColors.length] }}>
+                <div className="row-one" style={{ backgroundColor: cardColors[index % cardColors.length] }}>
                   <h5>{c.cityName}</h5>
                   <h2>{c.temp}°C</h2>
                 </div>
@@ -65,7 +88,7 @@ const Weather = () => {
                 </div>
               </div>
             </Col>
-          ))}
+          )))}
         </Row>
       </div>
 

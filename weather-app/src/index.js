@@ -11,7 +11,7 @@ root.render(
     clientId="DuZbynr8iA1pnboKk6CQxeMqdqNSrlu1"
     authorizationParams={{
       redirect_uri: window.location.origin,
-      // scope: "openid profile email"
+      audience: "https://myapi.example.com",
     }}
   >
     <App />

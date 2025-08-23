@@ -1,0 +1,60 @@
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to bottom, #213a73, #111);
+  color: white;
+  font-family: "Tagesschrift", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.weatherdetail{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 320px;
+}
+.weatherdetail-card{
+    width: 40%;
+    font-size: 25px;
+}
+.row-card{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white !important;
+  padding: 1rem 0 2rem 1rem !important;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  background-color: aqua;
+  margin-top: 20px;
+} 
+.arrow{
+    justify-self: self-start;
+    align-self: start;
+    font-size: 15px;
+}
+
+.row1 h5{
+  flex: 1;
+  margin-top: 9px; 
+  text-align: center;
+  padding-bottom: 2rem;
+  font-size: 28px;
+}
+.row1 h2{
+  flex: 2;
+  text-align: center;
+  font-size: 40px;
+}
+
+@media (max-width: 768px) {
+.weatherdetail-card{
+    width: 60%;
+    font-size: 25px;
+}
+}
