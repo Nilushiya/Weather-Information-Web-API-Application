@@ -1,6 +1,6 @@
-/* body {
+body {
   margin: 0;
-  background-color: #1F2128;
+  background-color: #213A73;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -11,23 +11,4 @@
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-} */
-body {
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to bottom, #1a2a44, #0d1b2e);
-    height: 100vh;
-    position: relative;
-}
-
-/* Optional: Add cloud overlay using a pseudo-element or an image */
-body::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 200px;
-    background: url('path-to-cloud-image.png') repeat-x bottom;
-    background-size: contain;
 }

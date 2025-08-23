@@ -1,0 +1,79 @@
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import "../style/App.css";
+import { Button, Form, Row, Col } from "react-bootstrap";
+import weatherIcon from '../assets/cloud.png';
+import { useAuth0 } from '@auth0/auth0-react';
+
+const Weather = () => {
+  const [weatherData, setWeatherData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [city, setCity] = useState();
+  const {getAccessTokenSilently, logout} = useAuth0();
+
+  useEffect(() =>{
+    fetchWeather();
+  },[]);
+  const fetchWeather = async () => {
+    setLoading(true);
+    try {
+      const token = await getAccessTokenSilently();
+      const response = await axios.get('http://localhost:8080/api/weather'
+        , {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    );
+      setWeatherData(response.data.data);
+    } catch (error) {
+      console.error('Error fetching weather:', error);
+    }
+    setLoading(false);
+  };
+
+  const addCity = () =>{
+    setCity('');
+  }
+  return (
+    <>
+      <div className="app">
+        <Button className='logout' onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>Log Out</Button>
+        <header className="app-header">
+          <h5><img src={weatherIcon} alt="Weather Icon" style={{ width: '50px', height: '35px' }}/>Weather App</h5>
+          <div className="search-bar">
+            <Form.Control
+              type="text"
+              placeholder="Enter a city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              style={{ width: '150px', height: '35px',backgroundColor:"#1f2128", border:"none" }}
+              className="custom-input"
+            />
+            <Button onClick={addCity} style={{backgroundColor:"#6f42c1", border:"none",fontSize: ".9rem"}}>Add City</Button>
+          </div>
+        </header>
+
+        <Row className="cards-grid m-0 p-0">
+          {weatherData && weatherData.map((c) => (
+            <Col key={c.cityName} xs={12} md={6} lg={6}>
+              <div className='weather-card purple'>
+                <div className="row-one">
+                  <h5>{c.cityName}</h5>
+                  <h2>{c.temp}°C</h2>
+                </div>
+                <div className="row-two">
+                  <p>{c.weatherDescription}</p>
+                </div>
+              </div>
+            </Col>
+          ))}
+        </Row>
+      </div>
+
+      <footer className="app-footer">
+        <p>2025 Fidenz Technologies</p>
+      </footer>
+    </>
+  )
+}
+
+export default Weather
