@@ -1,70 +1,45 @@
-# Getting Started with Create React App
+# Weather App 🌤️
+A React-based weather application that shows current weather details for different cities.  
+Users can view temperature, conditions, and more, with a modern UI and Auth0 integration.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features
+- Display temperature, cityName, and description
+- Detailed weather page with dynamic backgrounds
+- Cloudy background effects (PNG overlay)
+- Authentication with Auth0 (optional)
+- Responsive UI
 
-## Available Scripts
+## Tech Stack
+- React
+- React Router
+- Axios (for API requests)
+- FontAwesome (icons)
+- CSS /  Bootstrap  / React-Bootstrap (depending on what you used)
+- SpringBoot 
+- Auth0 (for login & MFA)
+- JWT Authentication (with Auth0 integration)
+- REST API
+- OpenWeather API (if you used it)
 
-In the project directory, you can run:
+## Setup Instructions
+- node version : v20.10.0
+- java version : 17
+-git clone "https://github.com/Nilushiya/Weather-Information-Web-API-Application.git"
 
-### `npm start`
+# Backend
+         - cd weather-service
+         - mvn clean install
+         - PORT=8080
+         - mvn spring-boot:run
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Frontend 
+         - cd weather-app
+         - npm install
+         - PORT=3000
+         - npm start
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# login
+         - Email : careers@fidenz.com
+         - password : Pass#fidenz
+         - before verify the email other vice can't see the email MFA verification
+         - for the MFA check your Email or OTP check in yout google Authenticator 
