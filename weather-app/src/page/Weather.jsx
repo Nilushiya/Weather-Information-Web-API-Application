@@ -6,11 +6,13 @@ import weatherIcon from '../assets/cloud.png';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from "react-router-dom";
 import cloudBack from "../assets/clu2.png";
+import { getCachedData, setCachedData } from "../utils/cache";
 
 const Weather = () => {
   const [weatherData, setWeatherData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [city, setCity] = useState();
+  const cacheKey = "weatherData";
   const {getAccessTokenSilently, loginWithRedirect, logout, isAuthenticated, isLoading} = useAuth0();
   const cardColors = [
     "#6f42c1",
@@ -41,6 +43,13 @@ const Weather = () => {
   const fetchWeather = async () => {
     setLoading(true);
 
+    const cached = getCachedData(cacheKey);
+    if (cached) {
+      setWeatherData(cached);
+      setLoading(false);
+      return;
+    }  
+
     try {
       const token = await getAccessTokenSilently({
         audience: "https://myapi.example.com",
@@ -50,6 +59,7 @@ const Weather = () => {
         headers: { Authorization: `Bearer ${token}` }
     }
     );
+      setCachedData(cacheKey, response.data.data);
       setWeatherData(response.data.data);
     } catch (error) {
       console.error('Error fetching weather:', error);
