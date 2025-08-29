@@ -26,7 +26,6 @@ public class WeatherServiceImp implements WeatherService {
     private String apiKey;
     @Autowired
     private CityService cityService;
-    @Cacheable("weatherData")
     @Override
     public WeatherResponse<List<WeatherDataDTO>> getWeatherData() throws IOException {
         List<String> cityCodes;
